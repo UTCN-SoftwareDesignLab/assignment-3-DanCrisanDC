@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Patients Administration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2>Patients Administration</h2>
+
+<form action="#" th:action="@{/patientPage}" th:object="${patientDto}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
+    <p>Identity card no.: <input type="number" th:field="*{cardNo}" /></p>
+    <p th:if="${#fields.hasErrors('cardNo')}" th:errors="*{cardNo}">Identity card no. Error</p>
+    <p>CNP: <input type="text" th:field="*{CNP}" /></p>
+    <p th:if="${#fields.hasErrors('CNP')}" th:errors="*{CNP}">CNP Error</p>
+    <p>Birth date: <input type="date" th:field="*{birthDate}" /></p>
+    <p th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth date Error</p>
+    <p>Address: <input type="text" th:field="*{address}" /></p>
+    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</p>
+    <p>Id: <input type="number" th:field="*{id}" /></p>
+
+    <p><input type="submit" name="addPatient" value="Add Patient" /></p>
+    <p><input type="submit" name="updatePatient" value="Update Patient information" /></p>
+</form>
+
+<p th:text = "${message}" ></p>
+
+</body>
+</html>

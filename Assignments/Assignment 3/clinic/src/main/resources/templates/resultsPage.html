@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Consultations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h2>Consultations list:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Consultation Id</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Date</th>
+        <th>Observations</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c : ${consultation}">
+        <td th:text = "${c.id}"></td>
+        <td th:text = "${c.patient.name}"></td>
+        <td th:text = "${c.doctor.name}"></td>
+        <td th:text = "${c.scheduledDate}"></td>
+        <td th:text = "${c.observations}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p th:text = "${message}" ></p>
+
+</body>
+</html>

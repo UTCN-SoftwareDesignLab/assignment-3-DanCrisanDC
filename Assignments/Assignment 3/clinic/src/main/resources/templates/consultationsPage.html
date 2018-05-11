@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html   lang="en"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Consultations Administration</title>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/secretary.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body onload="connect()" onunload="disconnect()">
+<h2>Consultations Administration</h2>
+
+<form action="#" th:action="@{/consultationsPage}" th:object="${consultationDto}" method="post">
+    <p>Patient name: <input type="text" th:field="*{patient.name}" /></p>
+    <p th:if="${#fields.hasErrors('patient')}" th:errors="*{patient.name}">Patient Error</p>
+    <p>Doctor name: <input type="text" th:field="*{doctor.name}" /></p>
+    <p th:if="${#fields.hasErrors('doctor')}" th:errors="*{doctor.name}">Doctor Error</p>
+    <p>Date: <input type="date" th:field="*{scheduledDate}" /></p>
+    <p th:if="${#fields.hasErrors('scheduledDate')}" th:errors="*{scheduledDate}">Date Error</p>
+    <p>Id: <input type="number" th:field="*{id}" /></p>
+    <p>Observations: <input type="text" th:field="*{observations}" /></p>
+
+    <p><input type="submit" name="createConsultation" value="Create Consultation" /></p>
+    <p><input type="submit" name="updateConsultation" value="Update Consultation" /></p>
+    <p><input type="submit" name="deleteConsultation" value="Delete Consultation" /></p>
+</form>
+
+<p th:text = "${message}" ></p>
+
+<noscript><h2>Seems your browser doesn't support Javascript! Websocket relies on Javascript being
+    enabled. Please enable
+    Javascript and reload this page!</h2></noscript>
+
+</body>
+</html>
