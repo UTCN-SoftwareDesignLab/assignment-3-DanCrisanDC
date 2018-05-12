@@ -25,6 +25,14 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public Patient createPatient(PatientDto patientDto) {
+
+        Patient patient = new Patient(patientDto.getName(), patientDto.getCardNo(), patientDto.getCNP(), patientDto.getBirthDate(), patientDto.getAddress());
+        patientRepository.save(patient);
+        return patient;
+    }
+
+    @Override
     public boolean update(PatientDto patientDto) {
 
         Patient patient = patientRepository.findById(patientDto.getId()).get();
@@ -39,7 +47,17 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public boolean findById(int id) {
+        return patientRepository.findById(id).isPresent();
+    }
+
+    @Override
     public Patient findByName(String name) {
         return patientRepository.findByName(name);
+    }
+
+    @Override
+    public void deleteAll() {
+        patientRepository.deleteAll();
     }
 }

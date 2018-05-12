@@ -13,4 +13,6 @@ public interface ConsultationRepository extends JpaRepository<Consultation, Inte
 
     @Query("SELECT c FROM Consultation c WHERE c.doctor.name LIKE %:doctor%")
     List<Consultation> findByDoctor(@Param("doctor") String doctor);
+
+    List<Consultation> findByObservations(String observations);
 }

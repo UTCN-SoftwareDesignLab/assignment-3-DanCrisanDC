@@ -20,7 +20,7 @@ function disconnect() {
 }
 
 function showNotifications(notification) {
-    $("#notification").append("<tr><td>" + notification + "</td></tr>");
+    $("#notifications").append("<tr><td>" + notification + "</td></tr>");
 }
 
 $(function () {

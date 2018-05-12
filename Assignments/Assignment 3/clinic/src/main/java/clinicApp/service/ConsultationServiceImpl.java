@@ -128,16 +128,18 @@ public class ConsultationServiceImpl implements ConsultationService {
         return consultation;
     }
 
-//    private Date getDate(String dateString) {
-//        Date date = null;
-//        try {
-//            date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-//            System.out.println(date + "!!!");
-//            return date;
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    @Override
+    public List<Consultation> findByObservations(String observations) {
+        return consultationRepository.findByObservations(observations);
+    }
 
+    @Override
+    public void deleteAll() {
+        consultationRepository.deleteAll();
+    }
+
+    @Override
+    public List<Consultation> getAll() {
+        return consultationRepository.findAll();
+    }
 }

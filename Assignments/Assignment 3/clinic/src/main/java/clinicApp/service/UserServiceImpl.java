@@ -51,6 +51,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User createUser(UserDto userDto) {
+
+        User user = new User(userDto.getName(), userDto.getUsername(), encoder.encode(userDto.getPassword()), Role.DOCTOR);
+        userRepository.save(user);
+        return user;
+    }
+
+    @Override
     public List<User> getAll() {
         return userRepository.findAll();
     }
@@ -61,25 +69,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean findById(int id) {
+        return userRepository.findById(id).isPresent();
+    }
+
+    @Override
     public User findByName(String name) {
         return userRepository.findByName(name);
     }
 
-    private String encodePassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes("UTF-8"));
-            StringBuilder hexString = new StringBuilder();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-
-            return hexString.toString();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
+    @Override
+    public void deleteAll() {
+        userRepository.deleteAll();
     }
 }

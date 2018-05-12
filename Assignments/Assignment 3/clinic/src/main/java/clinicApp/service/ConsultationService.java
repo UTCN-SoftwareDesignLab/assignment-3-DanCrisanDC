@@ -22,4 +22,10 @@ public interface ConsultationService {
     List<Consultation> findByDoctor(String doctor);
 
     List<Consultation> view(String doctor);
+
+    List<Consultation> findByObservations(String observations);
+
+    void deleteAll();
+
+    List<Consultation> getAll();
 }

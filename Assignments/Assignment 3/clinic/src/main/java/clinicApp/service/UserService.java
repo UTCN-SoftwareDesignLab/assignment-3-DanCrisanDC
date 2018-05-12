@@ -13,9 +13,15 @@ public interface UserService {
 
     boolean create(UserDto userDto);
 
+    User createUser(UserDto userDto);
+
     List<User> getAll();
 
     User findByUsernameAndPassword(String username, String password);
 
+    boolean findById(int id);
+
     User findByName(String name);
+
+    void deleteAll();
 }

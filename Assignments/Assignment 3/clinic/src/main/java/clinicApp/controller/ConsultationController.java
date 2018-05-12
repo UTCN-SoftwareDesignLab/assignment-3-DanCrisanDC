@@ -55,15 +55,15 @@ public class ConsultationController {
             model.addAttribute("message", "Please schedule at another date");
         }
 
-        NotificationDto notificationDto = new NotificationDto();
+        NotificationDto notification = new NotificationDto();
 //        notificationDto.setContent("Patient " + consultationDto.getPatient().getName() + " has arrived for the " + consultationDto.getScheduledDate().toString() + " consultation.");
-        notificationDto.setContent("Patient consultation.");
+        notification.setContent("Patient consultation.");
 
         User doctor = userService.findByName(consultationDto.getDoctor().getName());
 
         System.out.println(consultationDto.getDoctor().getName() + " " + doctor.getName() + " " + doctor.getUsername());
 
-        simpMessagingTemplate.convertAndSendToUser(doctor.getUsername(), "/queue/reply", notificationDto);
+        simpMessagingTemplate.convertAndSendToUser(doctor.getUsername(), "/queue/reply", notification);
         return "consultationsPage";
     }
 
